@@ -12,9 +12,9 @@ export const App = () => {
         <Route path="/" element={<InputPage />}/>
         <Route path="/:username" element={<ResumePage />}/>
         <Route
-            path="*"
-            element={<h1 className="title">Page not found</h1>}
-          ></Route>
+          path="*"
+          element={<h1 className="title">Page not found</h1>}
+        />
       </Routes>
     </div>
   );
