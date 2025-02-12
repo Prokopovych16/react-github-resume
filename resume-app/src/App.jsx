@@ -3,6 +3,7 @@ import './App.scss';
 import React from "react";
 import { InputPage } from "./components/InputPage/InputPage";
 import { ResumePage } from "./components/ResumePage/ResumePage";
+import { PageNotFound } from "./components/PageNotFound/PageNotFound";
 
 export const App = () => {
 
@@ -13,7 +14,7 @@ export const App = () => {
         <Route path="/:username" element={<ResumePage />}/>
         <Route
           path="*"
-          element={<h1 className="title">Page not found</h1>}
+          element={<PageNotFound />}
         />
       </Routes>
     </div>

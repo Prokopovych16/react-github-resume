@@ -1,34 +1,26 @@
 import { useEffect, useState } from 'react';
 import styles from './RepositoriesItem.module.scss';
+import LanguagesChart from '../LanguagesChart/LanguagesChart';
+import { Octokit } from 'octokit';
+import { Loader } from '../Loader/Loader';
 
 export const RepositoriesItem = ({ repo }) => {
-  console.log('---------');
-  console.log(repo);
+  const octokit = new Octokit();
   const [languages, setLanguages] = useState(null);
-  const lang = {
-    "JavaScript": 8279,
-    "SCSS": 2605,
-    "HTML": 2038
+
+  const fetchLanguages = async (login, name) => {
+    try {
+      const user = await octokit.request(`GET /repos/${login}/${name}/languages`);
+      setLanguages(user.data);
+    } catch (error) {
+      console.error('Error fetching languages:', error);
+    }
   };
 
-
   useEffect(() => {
-    const fetchLanguages = async () => {
-      try {
-        const response = await fetch(
-          `https://api.github.com/repos/${repo.owner.login}/${repo.name}/languages`
-        );
-        const data = await response.json();
-        setLanguages(data);
-      } catch (error) {
-        console.error('Error fetching languages:', error);
-      }
-    };
 
-    fetchLanguages();
+    fetchLanguages(repo.owner.login, repo.name);
   }, [repo.name, repo.owner.login]);
-
-  console.log(lang);
 
   return (
     <div className={styles.container}>
@@ -47,7 +39,13 @@ export const RepositoriesItem = ({ repo }) => {
         </span>
       </p>
       <div className={styles.container__graphic}>
-        
+        <div>
+        {languages ? (
+          <LanguagesChart languages={languages} />
+        ) : (
+          <Loader />
+        )}
+      </div>
       </div>
     </div>
   );

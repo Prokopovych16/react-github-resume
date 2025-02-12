@@ -6,7 +6,7 @@ import { Loader } from "../Loader/Loader";
 import { NoUser } from "../NoUser/NoUser";
 import { RepositoriesList } from "../RepositoriesList/RepositoriesList";
 
-const octokit = new Octokit({});
+const octokit = new Octokit();
 
 export const ResumePage = () => {
   const { username } = useParams();
@@ -39,11 +39,7 @@ export const ResumePage = () => {
   useEffect(() => {
     getUserData(username);
   }, [username]);
-
-  console.log(userInfo);
-  console.log(reposInfo);
-
-
+  
   if (!isLoaded) {
     return <div><Loader /></div>;
   }
@@ -70,7 +66,12 @@ export const ResumePage = () => {
               </span>
               <span>repositories</span>
             </p>
-            <p>{new Date(userInfo.created_at).toLocaleString()}</p>
+            <div className={styles.leftSide__mainInfo_repositiories__created}>
+              <h3 className={styles.leftSide__mainInfo_repositiories__created_title}>
+                Registered on: 
+              </h3>
+              <p>{new Date(userInfo.created_at).toLocaleString()}</p>
+            </div>
             <div></div>
           </div>
         </div>
