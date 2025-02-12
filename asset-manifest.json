@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-github-resume/static/css/main.03f63686.css",
+    "main.js": "/react-github-resume/static/js/main.a320054f.js",
+    "index.html": "/react-github-resume/index.html",
+    "main.03f63686.css.map": "/react-github-resume/static/css/main.03f63686.css.map",
+    "main.a320054f.js.map": "/react-github-resume/static/js/main.a320054f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.03f63686.css",
+    "static/js/main.a320054f.js"
+  ]
+}
